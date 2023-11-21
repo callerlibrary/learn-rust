@@ -1,15 +1,35 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+use regex::Regex;
+
+#[derive(serde::Serialize)]
+enum SerializationResult {
+    Str(String),
+    Bool(bool),
+}
+
 #[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
+fn serialization(json: &str) -> SerializationResult {
+    // 检查json参数中是否包含{或者[或者}或者]，如果不包含，直接返回false
+    let re = Regex::new(r"[{}\[\]]").unwrap();
+    if !re.is_match(json) {
+        return SerializationResult::Bool(false);
+    }
+    // 检查是否是合法的json，是的话返回json，否则返回false
+    let result = serde_json::from_str::<serde_json::Value>(json);
+    match result {
+        Ok(res) => {
+            let pretty_json = serde_json::to_string_pretty(&res).unwrap_or_default();
+            SerializationResult::Str(pretty_json)
+        }
+        Err(_) => SerializationResult::Bool(false),
+    }
 }
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![serialization])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
