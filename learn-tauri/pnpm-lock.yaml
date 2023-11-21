@@ -11,14 +11,23 @@ dependencies:
   element-plus:
     specifier: ^2.4.2
     version: 2.4.2(vue@3.3.8)
+  pinia:
+    specifier: ^2.1.7
+    version: 2.1.7(typescript@5.3.2)(vue@3.3.8)
   vue:
     specifier: ^3.3.4
     version: 3.3.8(typescript@5.3.2)
+  vue-router:
+    specifier: '4'
+    version: 4.2.5(vue@3.3.8)
 
 devDependencies:
   '@tauri-apps/cli':
     specifier: ^1.5.6
     version: 1.5.6
+  '@types/node':
+    specifier: ^20.9.3
+    version: 20.9.3
   '@vitejs/plugin-vue':
     specifier: ^4.2.3
     version: 4.5.0(vite@4.5.0)(vue@3.3.8)
@@ -33,7 +42,7 @@ devDependencies:
     version: 0.25.2(vue@3.3.8)
   vite:
     specifier: ^4.4.4
-    version: 4.5.0
+    version: 4.5.0(@types/node@20.9.3)
   vue-tsc:
     specifier: ^1.8.5
     version: 1.8.22(typescript@5.3.2)
@@ -463,6 +472,12 @@ packages:
     resolution: {integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==}
     dev: false
 
+  /@types/node@20.9.3:
+    resolution: {integrity: sha512-nk5wXLAXGBKfrhLB0cyHGbSqopS+nz0BUgZkUQqSHSSgdee0kssp1IAqlQOu333bW+gMNs2QREx7iynm19Abxw==}
+    dependencies:
+      undici-types: 5.26.5
+    dev: true
+
   /@types/web-bluetooth@0.0.16:
     resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==}
     dev: false
@@ -474,7 +489,7 @@ packages:
       vite: ^4.0.0 || ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.5.0
+      vite: 4.5.0(@types/node@20.9.3)
       vue: 3.3.8(typescript@5.3.2)
     dev: true
 
@@ -530,6 +545,10 @@ packages:
     dependencies:
       '@vue/compiler-dom': 3.3.8
       '@vue/shared': 3.3.8
+
+  /@vue/devtools-api@6.5.1:
+    resolution: {integrity: sha512-+KpckaAQyfbvshdDW5xQylLni1asvNSGme1JFs8I1+/H5pHEhqUKMEQD/qn3Nx5+/nycBq11qAEi8lk+LXI2dA==}
+    dev: false
 
   /@vue/language-core@1.8.22(typescript@5.3.2):
     resolution: {integrity: sha512-bsMoJzCrXZqGsxawtUea1cLjUT9dZnDsy5TuZ+l1fxRMzUGQUG9+Ypq4w//CqpWmrx7nIAJpw2JVF/t258miRw==}
@@ -973,6 +992,24 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
+  /pinia@2.1.7(typescript@5.3.2)(vue@3.3.8):
+    resolution: {integrity: sha512-+C2AHFtcFqjPih0zpYuvof37SFxMQ7OEG2zV9jRI12i9BOy3YQVAHwdKtyyc8pDcDyIc33WCIsZaCFWU7WWxGQ==}
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.3.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@vue/devtools-api': 6.5.1
+      typescript: 5.3.2
+      vue: 3.3.8(typescript@5.3.2)
+      vue-demi: 0.14.6(vue@3.3.8)
+    dev: false
+
   /pkg-types@1.0.3:
     resolution: {integrity: sha512-nN7pYi0AQqJnoLPC9eHFQ8AcyaixBUOwvqc5TDnIKCMEE6I0y8P7OKA7fPexsXGCGxQDl/cmrLAp26LhcwxZ4A==}
     dependencies:
@@ -1075,6 +1112,10 @@ packages:
     resolution: {integrity: sha512-o+ORpgGwaYQXgqGDwd+hkS4PuZ3QnmqMMxRuajK/a38L6fTpcE5GPIfrf+L/KemFzfUpeUQc1rRS1iDBozvnFA==}
     dev: true
 
+  /undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+    dev: true
+
   /unimport@3.5.0:
     resolution: {integrity: sha512-0Ei1iTeSYxs7oxxUf79/KaBc2dPjZxe7qdVpw7yIz5YcdTZjmBYO6ToLDW+fX9QOHiueZ3xtwb5Z/wqaSfXx6A==}
     dependencies:
@@ -1155,7 +1196,7 @@ packages:
       webpack-virtual-modules: 0.6.0
     dev: true
 
-  /vite@4.5.0:
+  /vite@4.5.0(@types/node@20.9.3):
     resolution: {integrity: sha512-ulr8rNLA6rkyFAlVWw2q5YJ91v098AFQ2R0PRFwPzREXOUJQPtFUG0t+/ZikhaOCDqFoDhN6/v8Sq0o4araFAw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -1183,6 +1224,7 @@ packages:
       terser:
         optional: true
     dependencies:
+      '@types/node': 20.9.3
       esbuild: 0.18.20
       postcss: 8.4.31
       rollup: 3.29.4
@@ -1202,6 +1244,15 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
+      vue: 3.3.8(typescript@5.3.2)
+    dev: false
+
+  /vue-router@4.2.5(vue@3.3.8):
+    resolution: {integrity: sha512-DIUpKcyg4+PTQKfFPX88UWhlagBEBEfJ5A8XDXRJLUnZOvcpMF8o/dnL90vpVkGaPbjvXazV/rC1qBKrZlFugw==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.5.1
       vue: 3.3.8(typescript@5.3.2)
     dev: false
 

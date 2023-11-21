@@ -20,7 +20,12 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-    "types": ["element-plus/global"]
+    "baseUrl": "./",
+    "types": ["element-plus/global"],
+    "paths": {
+      "@/*": ["src/*"],
+      "vue-router": ["node_modules/vue-router/dist/vue-router.d.ts"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]
