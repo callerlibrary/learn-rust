@@ -95,3 +95,35 @@ pub mod closure {
         workout(intensity, random_number);
     }
 }
+
+// 线程
+pub mod thread_ts {
+    use std::thread;
+    use std::time::Duration;
+    pub fn thread_run() {
+        let handle = thread::spawn(|| {
+            for i in 1..5 {
+                println!("hi number {} from the spawned thread!", i);
+                thread::sleep(Duration::from_millis(1));
+            }
+        });
+
+        // 阻塞主线程，直到handle线程执行完成
+        handle.join().unwrap();
+
+        for i in 1..5 {
+            println!("hi number {} from the main thread!", i);
+            thread::sleep(Duration::from_millis(1));
+        }
+    }
+
+    pub fn thread_move() {
+        let v = vec![1, 2, 3];
+
+        let handle = thread::spawn(move || {
+            println!("Here's a vector: {:?}", v);
+        });
+
+        handle.join().unwrap();
+    }
+}
